@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5486eb</color>
+    <color name="colorPrimaryDark">#5486eb</color>
+
+    <color name="colorAccent">#54c0eb</color>
+
+    <color name="textH1">#7C7A79</color>
+
+    <color name="backLabel">#f1f1f1</color>
+
+    <color name="myred">#FF0000</color>
+    <color name="mygreen">#008000</color>
+
+</resources>
