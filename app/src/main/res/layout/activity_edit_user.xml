@@ -167,13 +167,13 @@
                 android:layout_marginBottom="20dp">
 
                 <RadioButton
-                    android:id="@+id/radioButton_femme"
+                    android:id="@+id/radioButton_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Utilisateur" />
 
                 <RadioButton
-                    android:id="@+id/radioButton_homme"
+                    android:id="@+id/radioButton_admin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Administrateur" />
@@ -250,7 +250,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:text="Mohammed"
+                android:text=""
                 android:background="@color/backLabel"
                 android:padding="5dp"
                 android:layout_marginBottom="20dp" />
@@ -261,7 +261,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:text="Mohammed"
+                android:text=""
                 android:background="@color/backLabel"
                 android:padding="5dp"
                 android:layout_marginBottom="20dp" />

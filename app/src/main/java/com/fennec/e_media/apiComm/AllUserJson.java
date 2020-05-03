@@ -34,7 +34,7 @@ public class AllUserJson implements IonHandler {
                     {
                         if(result != null)
                         {
-                            Log.e("TAG_USER", "onClick: SEND URL" + result);
+                            Log.d("COMPILE E2", "onClick: SEND URL" + result);
                             ParseData(result);
                         }else
                         {

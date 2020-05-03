@@ -112,7 +112,7 @@ public class AddUserctivity extends AppCompatActivity {
 
                         url_informations = url_informations+nom+prenom+tel+email+pass+type;
 
-                        Log.e("TAG", "onClick: "+url_informations);
+                        Log.e("COMPILE E3", "onClick: "+url_informations);
 
                         deleteUser jsonRegister = new deleteUser(UrlComm.url_host+url_informations, "post", main);
 

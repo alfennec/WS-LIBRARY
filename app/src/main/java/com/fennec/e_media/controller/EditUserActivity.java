@@ -30,7 +30,7 @@ public class EditUserActivity extends AppCompatActivity {
 
     public ImageButton btn_edit;
 
-    public RadioButton radioButton_femme,radioButton_homme;
+    public RadioButton radioButton_admin ,radioButton_user;
 
     public FloatingActionButton floatingButton;
 
@@ -69,8 +69,8 @@ public class EditUserActivity extends AppCompatActivity {
 
         floatingButton = (FloatingActionButton) findViewById(R.id.floatButton);
 
-        radioButton_femme  = (RadioButton) findViewById(R.id.radioButton_femme);
-        radioButton_homme  = (RadioButton) findViewById(R.id.radioButton_homme);
+        radioButton_admin  = (RadioButton) findViewById(R.id.radioButton_admin);
+        radioButton_user  = (RadioButton) findViewById(R.id.radioButton_user);
 
         tv_nameUser.setText(currentUser.prenom+" "+currentUser.nom);
 
@@ -84,14 +84,17 @@ public class EditUserActivity extends AppCompatActivity {
         edt_email.setText(""+currentUser.email);
         edt_tel.setText(""+currentUser.tel);
 
+        edt_pass1.setText(""+currentUser.passord);
+        edt_pass2.setText(""+currentUser.passord);
+
         if(currentUser.type == 100)
         {
             tv_type.setText("Utilisateur");
-            radioButton_homme.setChecked(true);
+            radioButton_user.setChecked(true);
         }else
         {
             tv_type.setText("Administrateur");
-            radioButton_femme.setChecked(true);
+            radioButton_admin.setChecked(true);
         }
 
 
@@ -102,8 +105,8 @@ public class EditUserActivity extends AppCompatActivity {
         edt_pass1.setVisibility(View.GONE);
         edt_pass2.setVisibility(View.GONE);
 
-        radioButton_homme.setVisibility(View.GONE);
-        radioButton_femme.setVisibility(View.GONE);
+        //radioButton_admin.setVisibility(View.GONE);
+        //radioButton_user.setVisibility(View.GONE);
 
         btn_edit.setOnClickListener(new View.OnClickListener()
         {
@@ -125,8 +128,8 @@ public class EditUserActivity extends AppCompatActivity {
                 edt_pass1.setVisibility(View.VISIBLE);
                 edt_pass2.setVisibility(View.VISIBLE);
 
-                radioButton_homme.setVisibility(View.VISIBLE);
-                radioButton_femme.setVisibility(View.VISIBLE);
+                radioButton_admin.setVisibility(View.VISIBLE);
+                radioButton_user.setVisibility(View.VISIBLE);
             }
         });
 
@@ -135,82 +138,84 @@ public class EditUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                currentUser.email = edt_email.getText().toString();
-
-                if(edt_pass1.getText() == edt_pass2.getText())
+                if(edt_pass1.getText().toString().equals(edt_pass2.getText().toString()))
                 {
                     currentUser.passord = edt_pass1.getText().toString();
-                }
 
-                currentUser.nom = edt_nom.getText().toString();
-                currentUser.prenom = edt_prenom.getText().toString();
-                currentUser.tel = edt_tel.getText().toString();
+                    currentUser.email = edt_email.getText().toString();
+                    currentUser.nom = edt_nom.getText().toString();
+                    currentUser.prenom = edt_prenom.getText().toString();
+                    currentUser.tel = edt_tel.getText().toString();
 
-                if(radioButton_homme.isChecked())
-                {
-                    currentUser.type = 100;
+                    if(radioButton_admin.isChecked())
+                    {
+                        currentUser.type = 200;
+                    }else
+                    {
+                        currentUser.type = 100;
+                    }
+
+
+
+                    String url_informations = "user?";
+                    String id               = "id="+currentUser.id;
+                    String nom              = "&nom="+currentUser.nom;
+                    String prenom           = "&prenom="+currentUser.prenom;
+                    String tel              = "&tel="+currentUser.tel;
+                    String email            = "&email="+currentUser.email;
+                    String pass             = "&password="+currentUser.passord;
+                    String type             = "&type="+currentUser.type;
+
+                    try {
+                        url_informations = "user?";
+                        id               = "id="+currentUser.id;
+                        nom              = "&nom="+URLEncoder.encode(currentUser.nom, "UTF-8");
+                        prenom           = "&prenom="+URLEncoder.encode(currentUser.prenom, "UTF-8");
+                        tel              = "&tel="+URLEncoder.encode(currentUser.tel, "UTF-8");
+                        email            = "&email="+URLEncoder.encode(currentUser.email, "UTF-8");
+                        pass             = "&password="+currentUser.passord;
+                        type             = "&type="+currentUser.type;
+                    }catch (Exception e) {}
+
+                    url_informations = url_informations+id+nom+prenom+tel+email+pass+type;
+
+                    Log.e("TAG", "onClick: "+url_informations);
+
+                    deleteUser jsonRegister = new deleteUser(UrlComm.url_host+url_informations, "PUT", main);
+
+                    Toast.makeText(main, "Membre modifier avec succer", Toast.LENGTH_SHORT);
+
+                    MembreActivity.updateRecycle();
+
+                    /** past data in right place to do **/
+                    tv_nameUser.setText(currentUser.prenom+" "+currentUser.nom);
+
+                    tv_nom.setText(currentUser.nom);
+                    tv_prenom.setText(currentUser.prenom);
+                    tv_email.setText(" "+currentUser.email);
+                    tv_tel.setText(" "+currentUser.tel);
+
+                    tv_nameUser.setVisibility(View.VISIBLE);
+                    tv_total.setVisibility(View.VISIBLE);
+                    tv_nom.setVisibility(View.VISIBLE);
+                    tv_prenom.setVisibility(View.VISIBLE);
+                    tv_type.setVisibility(View.VISIBLE);
+                    tv_email.setVisibility(View.VISIBLE);
+                    tv_tel.setVisibility(View.VISIBLE);
+
+                    edt_nom.setVisibility(View.GONE);
+                    edt_prenom.setVisibility(View.GONE);
+                    edt_email.setVisibility(View.GONE);
+                    edt_tel.setVisibility(View.GONE);
+                    edt_pass1.setVisibility(View.GONE);
+                    edt_pass2.setVisibility(View.GONE);
+
+                    //radioButton_admin.setVisibility(View.GONE);
+                    //radioButton_user.setVisibility(View.GONE);
                 }else
                 {
-                    currentUser.type = 200;
+                    Toast.makeText(main, "les mots de passe ne sont pas identique ", Toast.LENGTH_SHORT).show();
                 }
-
-
-
-                String url_informations = "user?";
-                String id               = "id="+currentUser.id;
-                String nom              = "&nom="+currentUser.nom;
-                String prenom           = "&prenom="+currentUser.prenom;
-                String tel              = "&tel="+currentUser.tel;
-                String email            = "&email="+currentUser.email;
-                String pass             = "&password="+currentUser.passord;
-                String type             = "&type="+currentUser.type;
-
-                try {
-                    url_informations = "user?";
-                    id               = "id="+currentUser.id;
-                    nom              = "&nom="+URLEncoder.encode(currentUser.nom, "UTF-8");
-                    prenom           = "&prenom="+URLEncoder.encode(currentUser.prenom, "UTF-8");
-                    tel              = "&tel="+URLEncoder.encode(currentUser.tel, "UTF-8");
-                    email            = "&email="+URLEncoder.encode(currentUser.email, "UTF-8");
-                    pass             = "&password="+currentUser.passord;
-                    type             = "&type="+currentUser.type;
-                }catch (Exception e) {}
-
-                url_informations = url_informations+id+nom+prenom+tel+email+pass+type;
-
-                Log.e("TAG", "onClick: "+url_informations);
-
-                deleteUser jsonRegister = new deleteUser(UrlComm.url_host+url_informations, "PUT", main);
-
-                Toast.makeText(main, "Membre modifier avec succer", Toast.LENGTH_SHORT);
-
-                MembreActivity.updateRecycle();
-
-                /** past data in right place to do **/
-                tv_nameUser.setText(currentUser.prenom+" "+currentUser.nom);
-
-                tv_nom.setText(currentUser.nom);
-                tv_prenom.setText(currentUser.prenom);
-                tv_email.setText(" "+currentUser.email);
-                tv_tel.setText(" "+currentUser.tel);
-
-                tv_nameUser.setVisibility(View.VISIBLE);
-                tv_total.setVisibility(View.VISIBLE);
-                tv_nom.setVisibility(View.VISIBLE);
-                tv_prenom.setVisibility(View.VISIBLE);
-                tv_type.setVisibility(View.VISIBLE);
-                tv_email.setVisibility(View.VISIBLE);
-                tv_tel.setVisibility(View.VISIBLE);
-
-                edt_nom.setVisibility(View.GONE);
-                edt_prenom.setVisibility(View.GONE);
-                edt_email.setVisibility(View.GONE);
-                edt_tel.setVisibility(View.GONE);
-                edt_pass1.setVisibility(View.GONE);
-                edt_pass2.setVisibility(View.GONE);
-
-                radioButton_homme.setVisibility(View.GONE);
-                radioButton_femme.setVisibility(View.GONE);
             }
         });
 

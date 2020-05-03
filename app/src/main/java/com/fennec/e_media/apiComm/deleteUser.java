@@ -22,7 +22,7 @@ public class deleteUser {
                     {
                         if(result != null)
                         {
-                            Log.e("TAG_DELETE", "onClick: SEND URL" + result);
+                            Log.e("COMPILE EX", "onClick: SEND URL" + result);
                         }else
                         {
                             Log.e("TAG_GET", "onClick: ONFQILED");

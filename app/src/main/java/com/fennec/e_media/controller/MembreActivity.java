@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.fennec.e_media.R;
@@ -46,6 +47,9 @@ public class MembreActivity extends AppCompatActivity {
 
 
         String url_informations = UrlComm.url_host+"user";
+
+        Log.d("COMPILE E1", "onClick: SEND URL" + url_informations);
+
         usersJson = new AllUserJson(url_informations, main, 1);
         dialog = ProgressDialog.show(main, "", "Traitement de données. Veulliez attendre ...", true);
 
