@@ -1,6 +1,7 @@
 package com.fennec.e_media.adapter;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,14 +75,18 @@ public class mediaAdminAdapter extends RecyclerView.Adapter<mediaAdminAdapter.My
         holder.member_name.setText(myMedia.titre);
         holder.member_email.setText(myMedia.des);
 
-        if(empruntsRepository.findRenduById(myMedia.id).rendu == 1)
-        {
-            holder.status.setText("Non Emprunter");
-            holder.status.setTextColor(Color.rgb(0,100,0));
-        }else
+        int rendu = empruntsRepository.findRenduById(myMedia.id).rendu;
+
+        Log.e("TAG RENDU", "onBindViewHolder: "+ rendu);
+
+        if(rendu == 1)
         {
             holder.status.setText("Emprunter");
             holder.status.setTextColor(Color.RED);
+        }else
+        {
+            holder.status.setText("Non Emprunter");
+            holder.status.setTextColor(Color.rgb(0,100,0));
         }
 
         holder.parent.setOnClickListener(new View.OnClickListener()

@@ -20,9 +20,12 @@ import org.json.JSONObject;
 
 public class AllEmpruntJson implements IonHandler {
 
+    public int acty;
 
-    public AllEmpruntJson(String link , final Context ctx)
+    public AllEmpruntJson(String link , final Context ctx, int acty)
     {
+        this.acty = acty;
+
         Ion.with(ctx)
                 .load(link)
                 .asString()
@@ -45,7 +48,14 @@ public class AllEmpruntJson implements IonHandler {
     @Override
     public void onSucces(Object obj)
     {
-        EmpruntActivity.EmpruntOnSucces();
+        if(acty == 2)
+        {
+            MediaActivity.OnEmpruntSucces();
+        }else
+            {
+                EmpruntActivity.EmpruntOnSucces();
+            }
+
     }
 
     @Override

@@ -5,12 +5,11 @@ import android.util.Log;
 
 import com.fennec.e_media.controller.EmpruntActivity;
 import com.fennec.e_media.controller.MediaActivity;
-import com.fennec.e_media.controller.MembreActivity;
-import com.fennec.e_media.entity.media;
-import com.fennec.e_media.entity.user;
+import com.fennec.e_media.entity.emprunts;
+import com.fennec.e_media.entity.information;
 import com.fennec.e_media.myInterface.IonHandler;
-import com.fennec.e_media.repository.mediaRepository;
-import com.fennec.e_media.repository.userRepository;
+
+import com.fennec.e_media.repository.informationRepository;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
@@ -18,18 +17,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AllMediaJson implements IonHandler {
+public class AllInformation implements IonHandler {
 
+    public int acty;
 
-    public static int acty;
-
-
-    public AllMediaJson(String link , final Context ctx , int acty)
+    public AllInformation(String link , final Context ctx, int acty)
     {
         this.acty = acty;
 
         Ion.with(ctx)
-                .load("get",link)
+                .load(link)
                 .asString()
                 .setCallback(new FutureCallback<String>()
                 {
@@ -38,33 +35,19 @@ public class AllMediaJson implements IonHandler {
                     {
                         if(result != null)
                         {
-                            Log.e("TAG_USER", "onClick: SEND URL" + result);
                             ParseData(result);
                         }else
                         {
-                            Log.e("TAG_GET", "onClick: ONFQILED");
                             onFailed(-1);
                         }
                     }
                 });
     }
 
-
-
     @Override
     public void onSucces(Object obj)
     {
-        if(this.acty == 1)
-        {
-            MediaActivity.OnSucces();
-        }else if(this.acty == 3)
-        {
-            MediaActivity.OnMediaSucces();
-        }
-        else
-        {
-            EmpruntActivity.MediaOnSucces();
-        }
+        MediaActivity.OnSucces();
     }
 
     @Override
@@ -85,25 +68,28 @@ public class AllMediaJson implements IonHandler {
 
             for (int i=0; i < jArray.length(); i++)
             {
-                media json_media = new media();
+                information json_infos = new information();
 
                 try
                 {
                     JSONObject oneObject = jArray.getJSONObject(i);
 
-                    json_media.id        = Integer.parseInt(oneObject.getString("id"));
-                    json_media.titre       = oneObject.getString("titre");
-                    json_media.des    = oneObject.getString("des");
+                    json_infos.id           = Integer.parseInt(oneObject.getString("id"));
+                    json_infos.id_element   = Integer.parseInt(oneObject.getString("id_element"));
+                    json_infos.annee        = oneObject.getString("annee");
+                    json_infos.titre        = oneObject.getString("titre");
+                    json_infos.isbn         = oneObject.getString("isbn");
+                    json_infos.nbr_page     = Integer.parseInt(oneObject.getString("nbr_page"));
+                    json_infos.date_achat   = oneObject.getString("date_achat");
+                    json_infos.qrcode       = oneObject.getString("qrcode");
+
                 }
                 catch (JSONException e)
                 {
                     Log.e("tag_json", ""+e);
                 }
 
-                mediaRepository.list_media.add(json_media);
-
-                Log.e("tag_json_media", "marche bien");
-
+                informationRepository.list_information.add(json_infos);
                 onSucces(result);
             }
         }
@@ -111,5 +97,7 @@ public class AllMediaJson implements IonHandler {
         {
 
         }
+
     }
+
 }

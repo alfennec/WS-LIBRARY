@@ -1,5 +1,7 @@
 package com.fennec.e_media.repository;
 
+import android.util.Log;
+
 import com.fennec.e_media.entity.emprunts;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class empruntsRepository {
             if(list_emprunts.get(i).id_element == id)
             {
                 currentEmprunt = list_emprunts.get(i);
+                Log.e("TAG RENDU", "FIND IT: ");
             }
         }
 

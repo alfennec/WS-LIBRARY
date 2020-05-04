@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void OnFailedLogin()
     {
-        dialog.dismiss();
+        //dialog.dismiss();
         Toast.makeText(main, " Email ou mot de pass incorrect !", Toast.LENGTH_SHORT).show();
     }
 

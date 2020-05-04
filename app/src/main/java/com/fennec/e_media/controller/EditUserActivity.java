@@ -156,7 +156,6 @@ public class EditUserActivity extends AppCompatActivity {
                     }
 
 
-
                     String url_informations = "user?";
                     String id               = "id="+currentUser.id;
                     String nom              = "&nom="+currentUser.nom;

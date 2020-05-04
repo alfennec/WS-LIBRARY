@@ -54,7 +54,7 @@ public class EmpruntActivity extends AppCompatActivity {
 
 
         String url_informations = UrlComm.url_host+"emprunt";
-        MyEmpruntJson = new AllEmpruntJson(url_informations, main);
+        MyEmpruntJson = new AllEmpruntJson(url_informations, main, 1);
         dialog = ProgressDialog.show(main, "", "Traitement de données. Veulliez attendre ...", true);
 
         FloatingActionButton fab = findViewById(R.id.fab2);

@@ -12,11 +12,15 @@ import android.view.View;
 import com.fennec.e_media.R;
 import com.fennec.e_media.adapter.mediaAdminAdapter;
 import com.fennec.e_media.adapter.memberAdapter;
+import com.fennec.e_media.apiComm.AllEmpruntJson;
+import com.fennec.e_media.apiComm.AllInformation;
 import com.fennec.e_media.apiComm.AllMediaJson;
 import com.fennec.e_media.apiComm.AllUserJson;
 import com.fennec.e_media.apiComm.UrlComm;
 import com.fennec.e_media.apiComm.deleteUser;
 import com.fennec.e_media.apiComm.mediaJson;
+import com.fennec.e_media.repository.empruntsRepository;
+import com.fennec.e_media.repository.informationRepository;
 import com.fennec.e_media.repository.mediaRepository;
 import com.fennec.e_media.repository.userRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,10 +46,13 @@ public class MediaActivity extends AppCompatActivity {
 
         //////////// clear all data exesting
         mediaRepository.list_media.clear();
+        empruntsRepository.list_emprunts.clear();
+        informationRepository.list_information.clear();
+
 
 
         String url_informations = UrlComm.url_host+"media";
-        MymediaJson = new AllMediaJson(url_informations, main, 1);
+        MymediaJson = new AllMediaJson(url_informations, main, 3);
         dialog = ProgressDialog.show(main, "", "Traitement de données. Veulliez attendre ...", true);
 
         FloatingActionButton fab = findViewById(R.id.fab2);
@@ -58,6 +65,18 @@ public class MediaActivity extends AppCompatActivity {
                 main.startActivity(intent);
             }
         });
+    }
+
+    public static void OnMediaSucces()
+    {
+        String url_informations = UrlComm.url_host+"emprunt";
+        AllEmpruntJson MyEmpruntJson = new AllEmpruntJson(url_informations, main, 2);
+    }
+
+    public static void OnEmpruntSucces()
+    {
+        String url_informations = UrlComm.url_host+"information";
+        AllInformation MyEmpruntJson = new AllInformation(url_informations, main, 2);
     }
 
     public static void OnSucces()
