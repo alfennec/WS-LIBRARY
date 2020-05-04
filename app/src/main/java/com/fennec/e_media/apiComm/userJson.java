@@ -30,10 +30,10 @@ public class userJson implements IonHandler {
                         if(result != null)
                         {
                             Log.e("TAG_USER", "onClick: SEND URL" + result);
-                            ParseData(result);
+                            Main_Function(result);
                         }else
                         {
-                            Log.e("TAG_GET", "onClick: ONFQILED");
+                            Log.e("TAG_USER", "onClick: ONFQILED");
                             onFailed(-1);
                         }
                     }
@@ -42,22 +42,20 @@ public class userJson implements IonHandler {
 
     public void Main_Function(String result)
     {
-        String result_failed = result.replaceAll("\\s","");
-        String result_succes = result;
+        String result_check = result;
 
-        //Log.d("TAG_JSON_LOGIN", "onClick: SEND"+result+"rt");
-        try
+        int sizeResult = result_check.length();
+        result_check = result.substring(8,result_check.length()-1);
+
+        Log.e("TAG_USER", "ParseData: "+result_check+" "+result_check.length());
+
+        if(result_check.length() < 3)
         {
-            if(Integer.parseInt(result_failed) == 406 )
+            onFailed(result);
+        }else
             {
-                onFailed(result);
+                ParseData(result);
             }
-        }catch (Exception e)
-        {
-            ParseData(result_succes);
-            onSucces(result_succes);
-
-        }
     }
 
     @Override
@@ -69,7 +67,7 @@ public class userJson implements IonHandler {
     @Override
     public void onFailed(Object obj)
     {
-
+        MainActivity.OnFailedLogin();
     }
 
     public void ParseData(String result)

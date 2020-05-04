@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         main = this;
@@ -89,9 +90,6 @@ public class MainActivity extends AppCompatActivity {
                             userJson jsonUser = new userJson(url_informations, main);
 
                             dialog = ProgressDialog.show(main, "", "Traitement de données. Veulliez attendre ...", true);
-                        }else
-                        {
-                            OnFailedLogin();
                         }
                     }
                 });
@@ -170,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void OnFailedLogin()
     {
-        //dialog.dismiss();
+        dialog.dismiss();
         Toast.makeText(main, " Email ou mot de pass incorrect !", Toast.LENGTH_SHORT).show();
     }
 
