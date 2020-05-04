@@ -5,6 +5,8 @@ Comment installer l'API
 
 -- extraire le fichier meditèque dans un serveur XAMPP ou WAMP
 
+-- Importe la base de donnée depuis le fichier db
+
 -- test si l'API Marche :  http://localhost/mediatheque/public/api/media
 
 -- Après complie le projet Android ça devrais marcher , bonne chance Walid
