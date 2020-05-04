@@ -3,9 +3,9 @@
 
 Comment installer l'API
 
--- extraire le fichier meditèque dans un serveur XAMPP ou WAMP
+-- extraire le fichier mediatheque dans un serveur XAMPP ou WAMP , le fichier ce trouve dans api 
 
--- Importe la base de donnée depuis le fichier db
+-- Importe la base de donnée depuis le fichier dans le fichier api db
 
 -- test si l'API Marche :  http://localhost/mediatheque/public/api/media
 
