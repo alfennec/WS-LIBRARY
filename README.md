@@ -16,6 +16,8 @@ Comment installer l'API
 
 
 -------------------------------------------------------- cachier de charge -------------------------------------------
+
+
 Le but du projet est le développement d’une solution de gestion d’inventaire, d’une bibliothèque, ou d’une médiathèque. 
 A chaque élément (livre, vidéo …) est associé une cote, 
 une série d’informations (année, titre, …) ainsi qu’un QRcode ). 
