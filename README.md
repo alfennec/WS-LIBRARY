@@ -1,5 +1,16 @@
 # WS-LIBRARY
 
+
+Comment installer l'API
+
+-- extraire le fichier meditèque dans un serveur XAMPP ou WAMP
+
+-- test si l'API Marche :  http://localhost/mediatheque/public/api/media
+
+-- Après complie le projet Android ça devrais marcher , bonne chance Walid
+
+
+
 Le but du projet est le développement d’une solution de gestion d’inventaire, d’une bibliothèque, ou d’une médiathèque. 
 A chaque élément (livre, vidéo …) est associé une cote, 
 une série d’informations (année, titre, …) ainsi qu’un QRcode ). 
