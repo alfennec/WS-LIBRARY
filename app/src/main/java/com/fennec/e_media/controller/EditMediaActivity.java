@@ -42,6 +42,8 @@ public class EditMediaActivity extends AppCompatActivity {
     public media currentMedia ;
     public information currentInformtion ;
 
+    public static boolean notExiste = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,8 @@ public class EditMediaActivity extends AppCompatActivity {
 
         currentMedia = mediaRepository.getMediabyId(idMedia);
         currentInformtion = informationRepository.getInfoid(idMedia);
+
+        if(currentInformtion.id == 0)notExiste = true;
 
         tv_mediaTitre = (TextView) findViewById(R.id.tv_mediaTitre);
         tv_titre = (TextView) findViewById(R.id.tv_titre);
@@ -194,7 +198,7 @@ public class EditMediaActivity extends AppCompatActivity {
 
                 url_informations = url_informations+id+titre+des;
 
-                Log.e("TAG", "onClick: "+UrlComm.url_host+url_informations);
+                Log.e("TAG-INFOS", "onClick: "+UrlComm.url_host+url_informations);
 
                 deleteUser jsonRegister = new deleteUser(UrlComm.url_host+url_informations, "PUT", main);
 
@@ -204,7 +208,8 @@ public class EditMediaActivity extends AppCompatActivity {
                 currentInformtion.annee = edt_annee.getText().toString();
                 currentInformtion.isbn  = edt_isbn.getText().toString();
                 currentInformtion.nbr_page = Integer.parseInt(edt_nbr_page.getText().toString());
-                currentInformtion.qrcode = edt_titre.getText().toString();
+                currentInformtion.date_achat = edt_date_achat.getText().toString();
+                currentInformtion.qrcode = currentInformtion.titre;
 
                 url_informations        = "information?";
                 id                      = "id="+currentInformtion.id;
@@ -229,12 +234,21 @@ public class EditMediaActivity extends AppCompatActivity {
 
                 url_informations = url_informations+id+id_element+annee+titre+isbn+nbr_page+date_achat+qrcode;
 
-                Log.e("TAG", "onClick: "+UrlComm.url_host+url_informations);
 
-                jsonRegister = new deleteUser(UrlComm.url_host+url_informations, "PUT", main);
+                if(notExiste)
+                {
+                    Log.e("TAG-INFOS", "onClick: POST "+qrcode+" --- "+UrlComm.url_host+url_informations);
+                    jsonRegister = new deleteUser(UrlComm.url_host+url_informations, "POST", main);
+                    Toast.makeText(main, "Media modifier avec succer", Toast.LENGTH_SHORT);
+                }else
+                    {
+                        Log.e("TAG-INFOS", "onClick: PUT "+UrlComm.url_host+url_informations);
+                        jsonRegister = new deleteUser(UrlComm.url_host+url_informations, "PUT", main);
+                        Toast.makeText(main, "Media modifier avec succer", Toast.LENGTH_SHORT);
+                    }
 
-                Toast.makeText(main, "Media modifier avec succer", Toast.LENGTH_SHORT);
 
+                informationRepository.list_information.add(currentInformtion);
                 MediaActivity.updateRecycle();
 
                 /** past data in right place to do **/

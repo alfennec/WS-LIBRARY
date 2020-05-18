@@ -1,5 +1,7 @@
 package com.fennec.e_media.repository;
 
+import android.util.Log;
+
 import com.fennec.e_media.entity.information;
 
 import java.util.ArrayList;

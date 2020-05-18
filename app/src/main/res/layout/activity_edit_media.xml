@@ -188,8 +188,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textEmailAddress"
-                android:text="Mohammed"
+                android:inputType="number"
                 android:background="@color/backLabel"
                 android:padding="5dp"
                 android:layout_marginBottom="20dp" />
@@ -217,9 +216,8 @@
                 android:layout_marginBottom="20dp"
                 android:background="@color/backLabel"
                 android:ems="10"
-                android:inputType="number|text|textPhonetic|textPassword"
-                android:padding="5dp"
-                android:text="IB-1559487" />
+                android:inputType="text"
+                android:padding="5dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -234,7 +232,6 @@
                 android:id="@+id/tv_nbr_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="IB-1559487"
                 android:layout_marginBottom="20dp"/>
 
             <EditText
@@ -244,9 +241,8 @@
                 android:layout_marginBottom="20dp"
                 android:background="@color/backLabel"
                 android:ems="10"
-                android:inputType="number|text|textPhonetic|textPassword"
-                android:padding="5dp"
-                android:text="IB-1559487" />
+                android:inputType="number"
+                android:padding="5dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -261,7 +257,7 @@
                 android:id="@+id/tv_date_achat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="IB-1559487"
+                android:inputType="text"
                 android:layout_marginBottom="20dp"/>
 
             <EditText
@@ -271,9 +267,8 @@
                 android:layout_marginBottom="20dp"
                 android:background="@color/backLabel"
                 android:ems="10"
-                android:inputType="number|text|textPhonetic|textPassword"
-                android:padding="5dp"
-                android:text="IB-1559487" />
+                android:inputType="text"
+                android:padding="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"

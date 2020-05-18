@@ -20,9 +20,11 @@ public class deleteUser {
                     @Override
                     public void onCompleted(Exception e, String result)
                     {
+                        Log.e("TAG-INFOS", "AV IF: SEND URL" + result);
+
                         if(result != null)
                         {
-                            Log.e("COMPILE EX", "onClick: SEND URL" + result);
+                            Log.e("TAG-INFOS", "IN IF: SEND URL" + result);
                         }else
                         {
                             Log.e("TAG_GET", "onClick: ONFQILED");
