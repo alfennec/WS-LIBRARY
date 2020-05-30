@@ -16,7 +16,7 @@ public class empruntsRepository {
 
         for (int i = 0; i < list_emprunts.size(); i++)
         {
-            if(list_emprunts.get(i).id_element == id)
+            if(list_emprunts.get(i).id == id)
             {
                 currentEmprunt = list_emprunts.get(i);
                 Log.e("TAG RENDU", "FIND IT: ");
@@ -24,6 +24,19 @@ public class empruntsRepository {
         }
 
         return currentEmprunt;
+    }
+
+    public static boolean ifExist(int id)
+    {
+        for (int i = 0; i < list_emprunts.size(); i++)
+        {
+            if(list_emprunts.get(i).id_element == id)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static void updateEmprunt(emprunts current_emprunt)

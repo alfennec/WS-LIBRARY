@@ -96,8 +96,8 @@ public class AllEmpruntJson implements IonHandler {
                 }
 
                 empruntsRepository.list_emprunts.add(json_coursier);
-                onSucces(result);
             }
+            onSucces(result);
         }
         catch (Exception e)
         {

@@ -1,5 +1,7 @@
 package com.fennec.e_media.repository;
 
+import android.util.Log;
+
 import com.fennec.e_media.entity.media;
 
 import java.util.ArrayList;
@@ -29,10 +31,18 @@ public class mediaRepository {
 
         for (int i = 0; i < list_media.size(); i++)
         {
-            if(empruntsRepository.findRenduById(list_media.get(i).id).rendu == 1)
+            if(empruntsRepository.ifExist(list_media.get(i).id))
             {
-                current_list.add(list_media.get(i).titre);
-            }
+                if(empruntsRepository.findRenduById(list_media.get(i).id).rendu == 1)
+                {
+                    current_list.add(list_media.get(i).titre);
+                    Log.e("RETURNS-MEDIA", "MEDIA SANS EMPRUNT if : "+list_media.get(i).titre);
+                }
+            }else
+                {
+                    current_list.add(list_media.get(i).titre);
+                    Log.e("RETURNS-MEDIA", "MEDIA SANS EMPRUNT else : "+list_media.get(i).titre);
+                }
         }
 
         return current_list;

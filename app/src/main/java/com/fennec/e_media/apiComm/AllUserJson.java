@@ -34,7 +34,7 @@ public class AllUserJson implements IonHandler {
                     {
                         if(result != null)
                         {
-                            Log.d("COMPILE E2", "onClick: SEND URL" + result);
+                            Log.d("COMPILE-E2", "onClick: SEND URL" + result);
                             ParseData(result);
                         }else
                         {
@@ -60,8 +60,15 @@ public class AllUserJson implements IonHandler {
         }catch (Exception e)
         {
             ParseData(result_succes);
-            onSucces(result_succes);
 
+            if(acty == 2)
+            {
+                Log.e("IN-ACTY", "in onEmpruntSucces");
+                onEmpruntSucces(result_succes);
+            }else
+                {
+                    onSucces(result_succes);
+                }
         }
     }
 
@@ -115,14 +122,14 @@ public class AllUserJson implements IonHandler {
                 userRepository.list_user.add(json_user);
 
                 Log.e("TAG_AFFECTED", ""+json_user.nom);
+            }
 
-                if(acty == 1){
-                    onSucces(result);
-                }else
-                    {
-                        onEmpruntSucces(result);
-                    }
-
+            if(acty == 1)
+            {
+                onSucces(result);
+            }else
+            {
+                onEmpruntSucces(result);
             }
         }
         catch (Exception e)

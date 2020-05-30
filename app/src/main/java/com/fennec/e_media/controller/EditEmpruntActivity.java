@@ -32,8 +32,6 @@ public class EditEmpruntActivity extends AppCompatActivity {
 
     public TextView tv_titre,tv_user,tv_debut, tv_fin, tv_rendu;
 
-    public static Spinner spinner_user,spinner_media;
-
     public ImageButton btn_edit;
 
     public RadioButton radioButton_emprunt, radioButton_n_emprunt;
@@ -61,17 +59,6 @@ public class EditEmpruntActivity extends AppCompatActivity {
 
         current_emprunt = empruntsRepository.findRenduById(idEmprunt);
 
-        spinner_user = (Spinner) findViewById(R.id.spinner_user);
-        spinner_media= (Spinner) findViewById(R.id.spinner_media);
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, userRepository.getName());
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_user.setAdapter(arrayAdapter);
-
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mediaRepository.getTitreWithNotEmprunt());
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_media.setAdapter(arrayAdapter);
-
         tv_titre    = (TextView) findViewById(R.id.tv_titre) ;
         tv_user     = (TextView) findViewById(R.id.tv_user) ;
         tv_debut    = (TextView) findViewById(R.id.tv_debut) ;
@@ -90,6 +77,8 @@ public class EditEmpruntActivity extends AppCompatActivity {
         radioButton_n_emprunt       = (RadioButton) findViewById(R.id.radioButton_n_emprunt);
 
         tv_titre.setText(mediaRepository.getMediabyId(current_emprunt.id_element).titre);
+        Log.e("EDIT-EMPRUNT", "titre media : "+mediaRepository.getMediabyId(current_emprunt.id_element).titre);
+
         tv_user.setText(userRepository.getUserById(current_emprunt.id_user).nom+" "+userRepository.getUserById(current_emprunt.id_user).prenom);
 
         tv_debut.setText(current_emprunt.date_debut);
@@ -118,9 +107,6 @@ public class EditEmpruntActivity extends AppCompatActivity {
         input_date_fin.setVisibility(View.GONE);
 
 
-        spinner_user.setVisibility(View.GONE);
-        spinner_media.setVisibility(View.GONE);
-
         radioButton_emprunt.setVisibility(View.GONE);
         radioButton_n_emprunt.setVisibility(View.GONE);
 
@@ -130,8 +116,6 @@ public class EditEmpruntActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                tv_titre.setVisibility(View.GONE);
-                tv_user.setVisibility(View.GONE);
                 tv_debut.setVisibility(View.GONE);
                 tv_fin.setVisibility(View.GONE);
                 tv_rendu.setVisibility(View.GONE);
@@ -139,12 +123,9 @@ public class EditEmpruntActivity extends AppCompatActivity {
                 input_date_debut.setVisibility(View.VISIBLE);
                 input_date_fin.setVisibility(View.VISIBLE);
 
-
-                spinner_user.setVisibility(View.VISIBLE);
-                spinner_media.setVisibility(View.VISIBLE);
-
                 radioButton_emprunt.setVisibility(View.VISIBLE);
                 radioButton_n_emprunt.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -153,12 +134,6 @@ public class EditEmpruntActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-
-                value_media = spinner_media.getSelectedItem().toString();
-                value_user = spinner_user.getSelectedItem().toString();
-
-                current_emprunt.id_element = mediaRepository.getIdByTitre(value_media);
-                current_emprunt.id_user = userRepository.getIdByNom(value_user);
 
                 current_emprunt.date_debut = input_date_debut.getText().toString();
                 current_emprunt.date_fin = input_date_fin.getText().toString();
@@ -205,8 +180,6 @@ public class EditEmpruntActivity extends AppCompatActivity {
                 tv_debut.setText(""+current_emprunt.date_debut);
                 tv_fin.setText(""+current_emprunt.date_fin);
 
-
-
                 tv_titre.setVisibility(View.VISIBLE);
                 tv_user.setVisibility(View.VISIBLE);
                 tv_debut.setVisibility(View.VISIBLE);
@@ -215,10 +188,6 @@ public class EditEmpruntActivity extends AppCompatActivity {
 
                 input_date_debut.setVisibility(View.GONE);
                 input_date_fin.setVisibility(View.GONE);
-
-
-                spinner_user.setVisibility(View.GONE);
-                spinner_media.setVisibility(View.GONE);
 
                 radioButton_emprunt.setVisibility(View.GONE);
                 radioButton_n_emprunt.setVisibility(View.GONE);

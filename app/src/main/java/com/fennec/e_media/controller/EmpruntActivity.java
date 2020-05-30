@@ -57,6 +57,8 @@ public class EmpruntActivity extends AppCompatActivity {
         MyEmpruntJson = new AllEmpruntJson(url_informations, main, 1);
         dialog = ProgressDialog.show(main, "", "Traitement de données. Veulliez attendre ...", true);
 
+        Log.e("TAG_EMPRUNT", "onCreate: "+url_informations );
+
         FloatingActionButton fab = findViewById(R.id.fab2);
         fab.setOnClickListener(new View.OnClickListener()
         {
@@ -67,25 +69,26 @@ public class EmpruntActivity extends AppCompatActivity {
                 main.startActivity(intent);
             }
         });
-
-
-        Log.e("TAG_USERS", "onCreate: "+url_informations );
     }
 
     public static void EmpruntOnSucces()
     {
         String url_informations = UrlComm.url_host+"media";
         MymediaJson = new AllMediaJson(url_informations, main, 2);
+        Log.e("TAG_EMPRUNT", "onCreate: "+url_informations );
     }
 
     public static void MediaOnSucces()
     {
         String url_informations = UrlComm.url_host+"user";
         MyUserJson = new AllUserJson(url_informations, main, 2);
+        Log.e("TAG_EMPRUNT", "onCreate: "+url_informations );
     }
 
     public static void OnSucces()
     {
+        Log.e("TAG_EMPRUNT", "onCreate: IN onSucces emprunt" );
+
         /** adapter for test we have to improve our self for this app  **/
         recyclerView = (RecyclerView) main.findViewById(R.id.recyclerView);
         LinearLayoutManager lm = new LinearLayoutManager(main, LinearLayoutManager.VERTICAL, false);
