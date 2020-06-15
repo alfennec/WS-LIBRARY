@@ -114,15 +114,24 @@ public class GalleryFragment extends Fragment {
             tv_qrcode.setText(""+currentInfo.qrcode);
             tv_autre.setText("--");
 
-            if(empruntsRepository.findRenduById(currentMedia.id).rendu == 1)
+            if(empruntsRepository.ifExist(currentMedia.id))
+            {
+                if(empruntsRepository.findRenduById(currentMedia.id).rendu == 0)
+                {
+                    tv_emprunter.setText("Emprunter");
+                    tv_emprunter.setTextColor(Color.RED);
+                }else
+                {
+                    tv_emprunter.setText("Non Emprunter");
+                    tv_emprunter.setTextColor(Color.GREEN);
+                }
+
+            }else
             {
                 tv_emprunter.setText("Non Emprunter");
                 tv_emprunter.setTextColor(Color.GREEN);
-            }else
-            {
-                tv_emprunter.setText("Emprunter");
-                tv_emprunter.setTextColor(Color.RED);
             }
+
 
         }
 

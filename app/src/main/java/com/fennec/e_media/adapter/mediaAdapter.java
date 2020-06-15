@@ -97,7 +97,7 @@ public class mediaAdapter extends RecyclerView.Adapter<mediaAdapter.MyViewHolder
                 holder.status.setText("Non Emprunter");
                 holder.status.setTextColor(Color.rgb(0,100,0));
             }
-        
+
         int R = (int)(Math.random() * 254 + 1);
         int G = (int)(Math.random() * 254 + 1);
         int B = (int)(Math.random() * 254 + 1);
