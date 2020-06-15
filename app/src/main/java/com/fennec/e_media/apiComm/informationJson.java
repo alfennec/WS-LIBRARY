@@ -30,7 +30,7 @@ public class informationJson implements IonHandler {
                     {
                         if(result != null)
                         {
-                            //Log.e("TAG_GET", "onClick: SEND URL" + result);
+                            Log.e("TAG_GET", "onClick: SEND URL" + result);
                             ParseData(result);
                         }else
                         {
@@ -108,10 +108,13 @@ public class informationJson implements IonHandler {
 
                 informationRepository.list_information.add(json_infos);
 
-                Log.e("tag_json_media", "marche bien");
+                Log.e("IF-GET-INFOS", "marche bien "+json_infos.titre);
 
-                onSucces(result);
             }
+
+            onSucces(result);
+
+            Log.e("IF-GET-INFOS", "marche bien "+informationRepository.list_information.size());
         }
         catch (Exception e)
         {

@@ -19,6 +19,7 @@ public class informationRepository {
             if(list_information.get(i).id_element == id)
             {
                 current_infos = list_information.get(i);
+                Log.d("IF-GET-INFOS", "getInfoid: "+list_information.get(i).titre);
             }
         }
 

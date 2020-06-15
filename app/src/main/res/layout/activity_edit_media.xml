@@ -188,7 +188,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number"
+                android:inputType="date"
                 android:background="@color/backLabel"
                 android:padding="5dp"
                 android:layout_marginBottom="20dp" />
@@ -206,7 +206,7 @@
                 android:id="@+id/tv_isbn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="IB-1559487"
+                android:text=""
                 android:layout_marginBottom="20dp"/>
 
             <EditText

@@ -104,9 +104,9 @@ public class mediaJson implements IonHandler {
                 mediaRepository.list_media.add(json_media);
 
                 Log.e("tag_json_media", "marche bien");
-
-                onSucces(result);
             }
+
+            onSucces(result);
         }
         catch (Exception e)
         {

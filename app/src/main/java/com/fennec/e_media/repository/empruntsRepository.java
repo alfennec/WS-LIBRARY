@@ -16,10 +16,10 @@ public class empruntsRepository {
 
         for (int i = 0; i < list_emprunts.size(); i++)
         {
-            if(list_emprunts.get(i).id == id)
+            if(list_emprunts.get(i).id_element == id)
             {
                 currentEmprunt = list_emprunts.get(i);
-                Log.e("TAG RENDU", "FIND IT: ");
+                Log.e("TAG-RENDU", "FIND IT: "+list_emprunts.get(i).id_element);
             }
         }
 

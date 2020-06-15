@@ -31,7 +31,9 @@ public class empruntsJson implements IonHandler {
                     {
                         if(result != null)
                         {
+                            Log.d("REP-EMPRUNT", "onCompleted: "+result);
                             ParseData(result);
+
                         }else
                         {
                             onFailed(-1);
@@ -104,8 +106,10 @@ public class empruntsJson implements IonHandler {
                 }
 
                 empruntsRepository.list_emprunts.add(json_coursier);
-                onSucces(result);
+
             }
+            Log.e("LISTE-EMPRUNT", "size : "+ empruntsRepository.list_emprunts.size());
+            onSucces(result);
         }
         catch (Exception e)
         {

@@ -1,6 +1,7 @@
 package com.fennec.e_media.adapter;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fennec.e_media.R;
 import com.fennec.e_media.controller.HomeActivity;
+import com.fennec.e_media.entity.emprunts;
 import com.fennec.e_media.entity.media;
 import com.fennec.e_media.repository.empruntsRepository;
 
@@ -74,17 +76,28 @@ public class mediaAdapter extends RecyclerView.Adapter<mediaAdapter.MyViewHolder
         holder.media_name.setText(myMedia.titre);
         holder.media_date.setText(myMedia.des);
 
-        if(empruntsRepository.findRenduById(myMedia.id).rendu == 1)
+        emprunts currentEmprunt = empruntsRepository.findRenduById(myMedia.id);
+
+        Log.d("GET-EMPRUNT", "onBindViewHolder: "+currentEmprunt.id_element+" "+currentEmprunt.rendu);
+
+
+        if(empruntsRepository.ifExist(myMedia.id))
         {
-            holder.status.setText("Non Emprunter");
-            holder.status.setTextColor(Color.rgb(0,100,0));
-        }else
+            if(currentEmprunt.rendu == 0)
             {
                 holder.status.setText("Emprunter");
                 holder.status.setTextColor(Color.RED);
+            }else
+            {
+                holder.status.setText("Non Emprunter");
+                holder.status.setTextColor(Color.rgb(0,100,0));
             }
-
-
+        }else
+            {
+                holder.status.setText("Non Emprunter");
+                holder.status.setTextColor(Color.rgb(0,100,0));
+            }
+        
         int R = (int)(Math.random() * 254 + 1);
         int G = (int)(Math.random() * 254 + 1);
         int B = (int)(Math.random() * 254 + 1);
